@@ -1,20 +1,26 @@
-let yourChoice = prompt("What is your choice?\nRock, Paper, Scissor")
-let teste;
+let option = prompt("What is your choice?\nRock, Paper, Scissor");
+let playerSelection = option.toLowerCase();
+const myArray = ["Rock", "Paper", "Scissor"];
+let randomChoise;
 
-let opChoice;
 
 function getComputerChoice(){
-    let op = ["Rock", "Paper", "Scissor"];
-    let random = Math.floor(Math.random() * op.length);
-    let teste = op[random];
-    console.log("Your oponent played: " + teste);
-    return teste;
+    let random = Math.floor(Math.random() * myArray.length);
+    randomChoise = myArray[random];
+    console.log("Your oponent played: " + randomChoise);
+    return randomChoise;
 }
 
-function round(playerSelection, computerSelection){
-    
+function round(playerSelection, getComputerChoice){
+    if(playerSelection === getComputerChoice){
+        console.log("Empate!");
+    }else{
+        console.log("pfv aparece");
+    }
+    return;
 }
 
-getComputerChoice();
-console.log(yourChoice);
-console.log(teste);
+console.log(getComputerChoice());
+console.log(round());
+console.log("Teste: " + playerSelection)
+
