@@ -1,0 +1,64 @@
+body {
+    background-color: rgb(30, 30, 30);
+}
+
+div.container {
+    display: flex;
+    justify-content: end;
+    margin-left: 20%;
+    margin-top: 4%;
+    margin-right: 20%;
+    border: 3px white solid;
+}
+
+
+img {
+    width: 35%;
+}
+
+button {
+    text-align: center;
+    padding: 6px;
+    border: none;
+    border-radius: 2px;
+}
+
+.button:hover {
+    color: grey;
+}
+
+.scoreAll {
+    border: 3px white solid;
+    margin-top: 2%;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding-bottom: 30%;
+    display: flex;
+}
+
+.rock {
+    justify-content: center;
+    text-align: center;
+    border: 3px white solid;
+    padding-bottom: 2%;
+    padding-top: 2%;
+}
+
+.paper {
+    justify-content: center;
+    text-align: center;
+    border: 3px white solid;
+    padding-bottom: 2%;
+    padding-top: 2%;
+}
+
+.scissor {
+    justify-content: center;
+    text-align: center;
+    border: 3px white solid;
+    padding-bottom: 2%;
+    padding-top: 2%;
+}
+.playerScore{
+    color: white;
+}
