@@ -1,3 +1,89 @@
+let teste;
+        let playerSelection;
+        const myArray = ["rock", "paper", "scissor"];
+        let score = 0;
+        let scoreOp = 0;
+        const rock = document.querySelector('#rock');
+        rock.addEventListener('click', () => {
+            playerSelection = "rock";
+            playRound();
+        });
+
+        const paper = document.querySelector('#paper');
+        paper.addEventListener('click', () => {
+            playerSelection = "paper";
+            playRound();
+        });
+
+        const scissor = document.querySelector('#scissor');
+        scissor.addEventListener('click', () => {
+            playerSelection = "scissor";
+            playRound();
+            return playerSelection;
+        });
+
+        function getComputerChoice() {
+            let random = Math.floor(Math.random() * myArray.length);
+            randomChoise = myArray[random];
+            console.log("Your opponent played: " + randomChoise);
+            return randomChoise;
+        }
+
+        function playRound() {
+            getComputerChoice();            
+            if (playerSelection == randomChoise) {
+                console.log("Draw!");
+                score++;
+                scoreOp++;
+                teste = "You: " + score + " | Opponent: " + scoreOp;
+            }
+            if (playerSelection == "rock" && randomChoise == "scissor") {
+                console.log("You won! Rock beats scissor!")
+                score++;
+                teste = "You: " + score + " | Opponent: " + scoreOp;
+            } else {
+            }
+            
+            if (playerSelection == "rock" && randomChoise == "paper") {
+                console.log("You lost! Paper beats rock!")
+                scoreOp++;
+                teste = "You: " + score + " | Opponent: " + scoreOp;
+            } else {
+            }
+            if (playerSelection == "paper" && randomChoise == "scissor") {
+                console.log("You lost! Scissor beats paper!")
+                scoreOp++;
+                teste = "You: " + score + " | Opponent: " + scoreOp;
+            } else {
+            }
+            if (playerSelection == "paper" && randomChoise == "rock") {
+                console.log("You won! Paper beats rock!")
+                score++;
+                teste = "You: " + score + " | Opponent: " + scoreOp;
+            } else {
+            }
+            if (playerSelection == "scissor" && randomChoise == "rock") {
+                console.log("You lost! Rock beats scissor!")
+                scoreOp++;
+                teste = "You: " + score + " | Opponent: " + scoreOp;
+            } else {
+            }
+            if (playerSelection == "scissor" && randomChoise == "paper") {
+                console.log("You won! Scissor beats paper!")
+                score++;
+                teste = "You: " + score + " | Opponent: " + scoreOp;
+                return teste;
+            } else {
+            }
+        }
+
+        const scoreAll = document.querySelector('#score');
+        const content = document.createElement('p');
+        content.classList.add('content');
+        content.textContent = teste;
+        scoreAll.appendChild(content);
+
+/*
 const myArray = ["rock", "paper", "scissor"];
 let randomChoise;
 let score = 0;
@@ -84,3 +170,4 @@ function dot() {
 
 choose = "no";
 dot();
+*/

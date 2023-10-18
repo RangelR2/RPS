@@ -1,18 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper and Scissor!</title>
-    <script src="script.js"></script>
+    <script src=""></script>
     <style>
-        body{
+        body {
             background-color: rgb(30, 30, 30);
+        }
+
+        div.container {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 20%;
+            margin-top: 4%;
+        }
+
+
+        img {
+            width: 35%;
+        }
+
+        button {
+            margin-top: 3%;
+            margin-left: 7%;
+        }
+        .scoreAll{
+            border: 3px white solid;
+            display: flex;
+            padding-top: 30%;
+            margin-top: 2%;
+            margin-left: 20%;
+            margin-right: 18%;
         }
     </style>
 </head>
+
 <body>
-    
-    
+    <div id="scoreAll" class="scoreAll">
+
+    </div>
+
+    <div class="container" id="container">
+        <div class="rock">
+            <img src="https://jogo-jokenpo.netlify.app/images/pedra.png" alt="">
+            <br>
+            <button id="rock">Play Rock</button>
+        </div>
+        <div class="paper">
+            <img src="https://jogo-jokenpo.netlify.app/images/papel.png" alt="">
+            <br>
+            <button id="paper">Play Paper</button>
+        </div>
+        <div class="scissor">
+            <img src="https://jogo-jokenpo.netlify.app/images/tesoura.png" alt="">
+            <br>
+            <button id="scissor">Play Scissor</button>
+        </div>
+    </div>
+
+    <script>
+        
+
+    </script>
 </body>
+
 </html>
