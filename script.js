@@ -1,85 +1,93 @@
-let scorePlayer = 0;
-        let scoreOpponent = 0;
-        let winner;
-        let playerSelection;
-        const myArray = ["rock", "paper", "scissor"];
+    let scorePlayer = 0;
+    let scoreOpponent = 0;
+    let winner;
+    let playerSelection;
+    const myArray = ["rock", "paper", "scissor"];
+    const scoreAll = document.querySelector('#scoreAll');
+    const scoreYou = document.createElement('h1');
+    const scoreOp = document .createElement('h1');
 
-        const start = document.querySelector('#buttonDiv');
-        start.addEventListener('click', () =>{
-            scoreBoard();
-        })
+    const rock = document.querySelector('#rock');
+    rock.addEventListener('click', () => {
+        playerSelection = "rock";
+        playRound();
+    });
 
-        const rock = document.querySelector('#rock');
-        rock.addEventListener('click', () => {
-            playerSelection = "rock";
-        });
+    const paper = document.querySelector('#paper');
+    paper.addEventListener('click', () => {
+        playerSelection = "paper";
+        playRound();
+    });
 
-        const paper = document.querySelector('#paper');
-        paper.addEventListener('click', () => {
-            playerSelection = "paper";
-        });
+    const scissor = document.querySelector('#scissor');
+    scissor.addEventListener('click', () => {
+        playerSelection = "scissor";
+        playRound();
+    });
 
-        const scissor = document.querySelector('#scissor');
-        scissor.addEventListener('click', () => {
-            playerSelection = "scissor";
-            return playerSelection;
-        });
+    function getComputerChoice() {
+        let random = Math.floor(Math.random() * myArray.length);
+        randomChoise = myArray[random];
+        console.log("Your opponent played: " + randomChoise);
+        return randomChoise;
+    }
 
-        function getComputerChoice() {
-            let random = Math.floor(Math.random() * myArray.length);
-            randomChoise = myArray[random];
-            console.log("Your opponent played: " + randomChoise);
-            return randomChoise;
+    function playRound() {
+        getComputerChoice();
+        if (playerSelection == randomChoise) {
+            winner = "both";
+            scoreteste();
         }
-
-        function playRound() {
-            getComputerChoice();
-            if (playerSelection == randomChoise) {
-                winner = "both";
-                scoreteste();
-            }
-            if ((playerSelection == "rock" && randomChoise == "scissor") ||
-                (playerSelection == "paper" && randomChoise == "rock") ||
-                (playerSelection == "scissor" && randomChoise == "paper")) {
-                winner = "player";
-                scoreteste();
-            }
-            if ((playerSelection == "rock" && randomChoise == "paper") ||
-                (playerSelection == "paper" && randomChoise == "scissor") ||
-                (playerSelection == "scissor" && randomChoise == "rock")) {
-                winner = "bot";
-                scoreteste();
-            }
-        }        
-
-        function scoreBoard(){
-            const scoreAll = document.querySelector('#scoreAll');
-            const content = document.createElement('h1');
-            content.classList.add('content');
-            content.textContent = scoreOpponent;
-            scoreAll.appendChild(content);
+        if ((playerSelection == "rock" && randomChoise == "scissor") ||
+            (playerSelection == "paper" && randomChoise == "rock") ||
+            (playerSelection == "scissor" && randomChoise == "paper")) {
+            winner = "player";
+            scoreteste();
         }
-
-        function scoreteste() {
-            if (winner == "both") {
-                scoreOpponent++;
-                scorePlayer++;
-                console.log("Bot: " + scoreOpponent);
-                console.log("Player: " + scorePlayer);
-            }
-            if (winner == "player") {
-                scorePlayer++;
-                console.log("Bot: " + scoreOpponent);
-                console.log("Player: " + scorePlayer);
-                return scorePlayer;
-            }
-            if (winner == "bot") {
-                scoreOpponent++;
-                console.log("Bot: " + scoreOpponent);
-                console.log("Player: " + scorePlayer);
-                return scoreOpponent;
-            }
+        if ((playerSelection == "rock" && randomChoise == "paper") ||
+            (playerSelection == "paper" && randomChoise == "scissor") ||
+            (playerSelection == "scissor" && randomChoise == "rock")) {
+            winner = "bot";
+            scoreteste();
         }
+    }
+
+    function scoreBoard() {
+        scoreOp.classList.add('scoreOp');
+        scoreOp.textContent = 'Opponent: ' + scoreOpponent;
+        scoreAll.appendChild(scoreOp);
+        scoreOp.setAttribute('style', 'color: green;');
+
+        scoreYou.classList.add('scoreYou');
+        scoreYou.textContent = 'You: ' + scorePlayer;
+        scoreAll.appendChild(scoreYou);
+        scoreYou.setAttribute('style', 'color: white;');
+    }
+
+    function scoreteste() {
+        if (winner == "both") {
+            scoreOpponent++;
+            scorePlayer++;
+            console.log("Bot: " + scoreOpponent);
+            console.log("Player: " + scorePlayer);
+            scoreBoard()
+        }
+        if (winner == "player") {
+            scorePlayer++;
+            console.log("Bot: " + scoreOpponent);
+            console.log("Player: " + scorePlayer);
+            scoreBoard()
+            return scorePlayer;
+        }
+        if (winner == "bot") {
+            scoreOpponent++;
+            console.log("Bot: " + scoreOpponent);
+            console.log("Player: " + scorePlayer);
+            scoreBoard()
+            return scoreOpponent;
+        }
+    }
+
 /*
 
 const myArray = ["rock", "paper", "scissor"];
