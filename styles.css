@@ -8,7 +8,6 @@ div.container {
     margin-left: 20%;
     margin-top: 4%;
     margin-right: 20%;
-    border: 3px white solid;
 }
 
 
@@ -21,7 +20,6 @@ button {
     padding: 6px;
     border: none;
     border-radius: 2px;
-    cursor: pointer;
 }
 
 .scoreAll {
@@ -29,44 +27,58 @@ button {
     margin-top: 2%;
     margin-left: 20%;
     margin-right: 20%;
-    height: 320px;
-    display: flex;
+    height: 50vh;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .rock {
     justify-content: center;
     text-align: center;
-    border: 3px white solid;
-    padding-top: 2%;
-    padding-bottom: 1%;
+    border:2px solid rgb(255, 255, 255);
+    padding:1%;
+}
+
+.rockButton{
+    margin-top: 2%;
 }
 
 .rockButton:hover{
-    padding: 9px;
+    background-color: rgb(189, 186, 186);
 }
 
 .paper {
     justify-content: center;
     text-align: center;
-    border: 3px white solid;
-    padding-bottom: 1%;
-    padding-top: 2%;
+    border:2px solid rgb(255, 255, 255);
+    padding:1%;
+}
+
+.paperButton{
+    margin-top: 2%;
 }
 
 .paperButton:hover{
-    padding: 9px;
+    background-color: rgb(189, 186, 186);
 }
 
 .scissor {
     justify-content: center;
     text-align: center;
-    border: 3px white solid;
-    padding-bottom: 5%;
-    padding-top: 2%;
+    border:2px solid rgb(255, 255, 255);
+    padding:1%;
+}
+
+.scissorButton{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    
 }
 
 .scissorButton:hover{
-    margin: 9px;
+    background-color: rgb(189, 186, 186);
 }
 
 .playerScore{

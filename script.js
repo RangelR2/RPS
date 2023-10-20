@@ -1,12 +1,96 @@
-    let scorePlayer = 0;
-    let scoreOpponent = 0;
-    let winner;
-    let playerSelection;
-    const myArray = ["rock", "paper", "scissor"];
-    const scoreAll = document.querySelector('#scoreAll');
-    const scoreYou = document.createElement('h1');
-    const scoreOp = document .createElement('h1');
+let scorePlayer = 0;
+let scoreOpponent = 0;
+let winner;
+const myArray = ["rock", "paper", "scissor"];
+const scoreAll = document.querySelector('#scoreAll');
+const scoreYou = document.createElement('h1');
+const scoreOp = document.createElement('h1');
 
+const upperDiv = document.createElement('upperDiv');
+const middleDiv = document.createElement('middleDiv');
+const bottomDiv = document.createElement('bottomDiv');
+
+const upperMessage = document.createElement('p');
+const bottomMessage = document.createElement('p');
+
+document.querySelector('#rock').disabled = true;
+document.querySelector('#paper').disabled = true;
+document.querySelector('#scissor').disabled = true;
+
+/// Start Button
+
+const startDiv = document.createElement('startDiv');
+startDiv.classList.add('div');
+scoreAll.appendChild(startDiv);
+startDiv.setAttribute('style', 'border: 2px solid black; display: flex; height: 100%; align-items: center; flex-direction: row; flex-wrap: wrap; justify-content: space-around;');
+
+const startButton = document.createElement('button');
+startButton.classList.add('startButton');
+startButton.textContent = 'Start!';
+startDiv.appendChild(startButton);
+startButton.setAttribute('style', 'background-color: white; padding:20px; padding-left: 30px; padding-right: 30px; border-radius: 15px;font-size: 20px; cursor: pointer; align-items: center; flex-direction: row; flex-wrap: wrap; justify-content: space-around;');
+
+startButton.addEventListener('mouseover', () => {
+startButton.setAttribute('style', 'background-color: rgb(189, 186, 186); padding:20px; padding-left: 30px; padding-right: 30px; border-radius: 15px;font-size: 20px; cursor: pointer; align-items: center; flex-direction: row; flex-wrap: wrap; justify-content: space-around;');
+});
+
+startButton.addEventListener('mouseout', () => {
+    startButton.setAttribute('style', 'background-color: white; padding:20px; padding-left: 30px; padding-right: 30px; border-radius: 15px;font-size: 20px; cursor: pointer;align-items: center; flex-direction: row; flex-wrap: wrap; justify-content: space-around;');
+});
+
+startButton.addEventListener('click', () => {
+    startDiv.remove();
+    startButton.remove();
+    document.querySelector('#rock').disabled = false;
+    document.querySelector('#paper').disabled = false;
+    document.querySelector('#scissor').disabled = false;
+
+    buttonChoices();
+    renderScore();
+
+    
+    upperDiv.classList.add('div');
+    scoreAll.appendChild(upperDiv);
+    upperDiv.setAttribute('style', 'display: flex; height: 33%; align-items: center; flex-direction: row; flex-wrap: wrap; justify-content: space-around;');
+
+    
+    middleDiv.classList.add('div');
+    scoreAll.appendChild(middleDiv);
+    middleDiv.setAttribute('style','display: flex; justify-content: center; height: 31%; align-items: center; flex-direction: row; flex-wrap: wrap; justify-content: space-around;');
+
+    
+    bottomDiv.classList.add('div');
+    scoreAll.appendChild(bottomDiv);
+    bottomDiv.setAttribute('style', 'display: flex; height: 33%; align-items: center; flex-direction: row; flex-wrap: wrap; justify-content: space-around;');
+
+    upperMessage.classList.add('upperMessage');
+    upperDiv.appendChild(upperMessage);
+    upperMessage.textContent = 'aoba';
+    upperMessage.setAttribute('style','color: white;')
+
+    bottomMessage.classList.add('bottomMessage');
+    bottomDiv.appendChild(bottomMessage);
+    bottomMessage.setAttribute('style','color: white;')
+
+    scoreYou.classList.add('scoreYou');
+    scoreYou.textContent = 'You: ' + scorePlayer;
+    middleDiv.appendChild(scoreYou);
+    scoreYou.setAttribute('style', 'color: white;');
+
+    scoreOp.classList.add('scoreOp');
+    scoreOp.textContent = 'Opponent: ' + scoreOpponent;
+    middleDiv.appendChild(scoreOp);
+    scoreOp.setAttribute('style', 'color: orange;');
+});
+
+/// Ui Score
+
+function renderScore(){
+}
+
+/// Choice Buttons
+
+function buttonChoices() {
     const rock = document.querySelector('#rock');
     rock.addEventListener('click', () => {
         playerSelection = "rock";
@@ -24,86 +108,34 @@
         playerSelection = "scissor";
         playRound();
     });
+}
 
-    function getComputerChoice() {
-        let random = Math.floor(Math.random() * myArray.length);
-        randomChoise = myArray[random];
-        console.log("Your opponent played: " + randomChoise);
-        return randomChoise;
+/// Function that play the round
+
+function playRound() {
+    getComputerChoice();
+    if (playerSelection == randomChoise) {
+        bottomMessage.textContent = 'Tie';
+        winner = "both";
+        scoreteste();
     }
-
-    function playRound() {
-        getComputerChoice();
-        if (playerSelection == randomChoise) {
-            winner = "both";
-            scoreteste();
-        }
-        if ((playerSelection == "rock" && randomChoise == "scissor") ||
-            (playerSelection == "paper" && randomChoise == "rock") ||
-            (playerSelection == "scissor" && randomChoise == "paper")) {
-            winner = "player";
-            scoreteste();
-        }
-        if ((playerSelection == "rock" && randomChoise == "paper") ||
-            (playerSelection == "paper" && randomChoise == "scissor") ||
-            (playerSelection == "scissor" && randomChoise == "rock")) {
-            winner = "bot";
-            scoreteste();
-        }
+    if ((playerSelection == "rock" && randomChoise == "scissor") ||
+        (playerSelection == "paper" && randomChoise == "rock") ||
+        (playerSelection == "scissor" && randomChoise == "paper")) {
+        bottomMessage.textContent = 'Player choose ' + playerSelection + ' and win this round!';
+        winner = "player";
+        scoreteste();
     }
-
-    function scoreBoard() {
-        scoreOp.classList.add('scoreOp');
-        scoreOp.textContent = 'Opponent: ' + scoreOpponent;
-        scoreAll.appendChild(scoreOp);
-        scoreOp.setAttribute('style', 'color: green;');
-
-        scoreYou.classList.add('scoreYou');
-        scoreYou.textContent = 'You: ' + scorePlayer;
-        scoreAll.appendChild(scoreYou);
-        scoreYou.setAttribute('style', 'color: white;');
-    }
-
-    function scoreteste() {
-        if (winner == "both") {
-            scoreOpponent++;
-            scorePlayer++;
-            console.log("Bot: " + scoreOpponent);
-            console.log("Player: " + scorePlayer);
-            scoreBoard()
-        }
-        if (winner == "player") {
-            scorePlayer++;
-            console.log("Bot: " + scoreOpponent);
-            console.log("Player: " + scorePlayer);
-            scoreBoard()
-            return scorePlayer;
-        }
-        if (winner == "bot") {
-            scoreOpponent++;
-            console.log("Bot: " + scoreOpponent);
-            console.log("Player: " + scorePlayer);
-            scoreBoard()
-            return scoreOpponent;
-        }
-    }
-
-/*
-
-const myArray = ["rock", "paper", "scissor"];
-let randomChoise;
-let score = 0;
-let scoreOp = 0;
-let option;
-
-function oxes() {
-    console.log("--------------------------------");
-    if (option == "rock" || option == "paper" || option == "scissor") {
-        console.log("You played: " + option);
-    } else {
-        console.log("This isn't a option!");
+    if ((playerSelection == "rock" && randomChoise == "paper") ||
+        (playerSelection == "paper" && randomChoise == "scissor") ||
+        (playerSelection == "scissor" && randomChoise == "rock")) {
+        bottomMessage.textContent = 'Player choose ' + playerSelection + ' and lose this round!';
+        winner = "bot";
+        scoreteste();
     }
 }
+
+/// Function to get the opponent option
 
 function getComputerChoice() {
     let random = Math.floor(Math.random() * myArray.length);
@@ -112,68 +144,95 @@ function getComputerChoice() {
     return randomChoise;
 }
 
-function round() {
-    if (option == randomChoise) {
-        console.log("Draw!");
-        score++;
-        scoreOp++;
-        console.log("You: " + score + " | Opponent: " + scoreOp);
+/// Function that increase scoreboard
+
+function scoreteste() {
+    if (winner == "both") {
+        scoreOpponent++;
+        scorePlayer++;
+        console.log("Bot: " + scoreOpponent);
+        console.log("Player: " + scorePlayer);
+        scoreBoard()
     }
-    if (option == "rock" && randomChoise == "scissor") {
-        console.log("You won! Rock beats scissor!")
-        score++;
-        console.log("You: " + score + " | Opponent: " + scoreOp);
-    } else {
+    if (winner == "player") {
+        scorePlayer++;
+        console.log("Bot: " + scoreOpponent);
+        console.log("Player: " + scorePlayer);
+        scoreBoard()
+        return scorePlayer;
     }
-    if (option == "rock" && randomChoise == "paper") {
-        console.log("You lost! Paper beats rock!")
-        scoreOp++;
-        console.log("You: " + score + " | Opponent: " + scoreOp);
-    } else {
+    if (winner == "bot") {
+        scoreOpponent++;
+        console.log("Bot: " + scoreOpponent);
+        console.log("Player: " + scorePlayer);
+        scoreBoard()
+        return scoreOpponent;
     }
-    if (option == "paper" && randomChoise == "scissor") {
-        console.log("You lost! Scissor beats paper!")
-        scoreOp++;
-        console.log("You: " + score + " | Opponent: " + scoreOp);
-    } else {
-    }
-    if (option == "paper" && randomChoise == "rock") {
-        console.log("You won! Paper beats rock!")
-        score++;
-        console.log("You: " + score + " | Opponent: " + scoreOp);
-    } else {
-    }
-    if (option == "scissor" && randomChoise == "rock") {
-        console.log("You lost! Rock beats scissor!")
-        scoreOp++;
-        console.log("You: " + score + " | Opponent: " + scoreOp);
-    } else {
-    }
-    if (option == "scissor" && randomChoise == "paper") {
-        console.log("You won! Scissor beats paper!")
-        score++;
-        console.log("You: " + score + " | Opponent: " + scoreOp);
-    } else {
-    }
-    console.log("--------------------------------");
 }
 
-let choose = "yes";
+/// Scoreboard Function
 
-function game() {
-    option = prompt("What is your choice?\nRock, Paper, Scissor").toLowerCase();
-    oxes();
-    getComputerChoice();
-    round();
+function scoreBoard() {
+    scoreYou.classList.add('scoreYou');
+    scoreYou.textContent = 'You: ' + scorePlayer;
+    middleDiv.appendChild(scoreYou);
+    scoreYou.setAttribute('style', 'color: white;');    
+
+    scoreOp.classList.add('scoreOp');
+    scoreOp.textContent = 'Opponent: ' + scoreOpponent;
+    middleDiv.appendChild(scoreOp);
+    scoreOp.setAttribute('style', 'color: orange;');
+
+    if(scoreOpponent == 5){
+        bottomMessage.textContent = 'You Lost!'
+        playAgain();
+        scoreOpponent = 0;
+        scorePlayer = 0;
+    }
+
+    if (scorePlayer == 5) {
+        bottomMessage.textContent = 'You Won!'
+        playAgain();        
+        scoreOpponent = 0;
+        scorePlayer = 0;
+    }
 }
 
-function dot() {
-    do {
-        game();
-        choose = prompt("Wanna continue?\nYes | No").toLowerCase();
-    } while (choose == "yes");
+/// Reset Function
+
+function playAgain() {
+    scoreYou.remove();
+    scoreOp.remove();
+    const resetButton = document.createElement('button');
+    resetButton.classList.add('resetButton');
+    resetButton.textContent = 'Play again!';
+    middleDiv.appendChild(resetButton);
+    resetButton.setAttribute('style', 'background-color: white; padding:20px; padding-left: 30px; padding-right: 30px; border-radius: 15px;font-size: 20px; cursor: pointer; align-items: center; flex-direction: row; flex-wrap: wrap; justify-content: space-around;'); 
+
+    resetButton.addEventListener('click', () => {
+        
+        scoreOpponent = 0;
+        scorePlayer = 0;
+        scoreYou.classList.add('scoreYou');
+        scoreYou.textContent = 'You: ' + scorePlayer;
+        middleDiv.appendChild(scoreYou);
+        scoreYou.setAttribute('style', 'color: white;');
+    
+        scoreOp.classList.add('scoreOp');
+        scoreOp.textContent = 'Opponent: ' + scoreOpponent;
+        middleDiv.appendChild(scoreOp);
+        scoreOp.setAttribute('style', 'color: orange;');
+
+        resetButton.remove();
+        buttonChoices();
+    });
 }
 
-choose = "no";
-dot();
-*/
+
+
+
+
+
+
+
+
